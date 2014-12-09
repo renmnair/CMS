@@ -1,0 +1,70 @@
+<% if flash[:alert] %>
+<div class="error"><%= flash[:alert] %></div>
+<% end %> 
+
+<div style="float:left;margin-left:30%;">
+
+<h1>Trainers</h1>
+
+<tr>
+ <td><%= link_to 'Back',  :back%></td><br>
+ </tr>
+
+<table class="hovertable">
+
+  <tr>
+    <th>TrainerName</th>
+    <th>Course<th>
+    <%if is_admin?%>
+    <th>Actions</th>
+    <% end %>
+    <th colspan="2"></th>
+  </tr>
+
+<% @trainers.each do |trainer| %>
+  <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+   <% @cour =Course.where(:id=>trainer.course_id).first.course_name %>
+  <tr>
+    <td><%= trainer.first_name %></td>
+     <td><%= !@cour.nil? ? @cour :'No name'%></td>
+     <td><%= link_to 'Show', trainer_path(trainer) %></td>
+    <%if is_admin?%>
+  <td><%= link_to 'Edit', edit_trainer_path(trainer) %></td>
+    <td><%= link_to 'Delete', trainer_path(trainer),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
+<% end %>
+</table>
+</div>
+<style type="text/css">
+table.hovertable {
+  font-family: verdana,arial,sans-serif;
+  font-size:11px;
+  color:#333333;
+  border-width: 1px;
+  border-color: #999999;
+  border-collapse: collapse;
+}
+table.hovertable th {
+  background-color:#c3dde0;
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #a9c6c9;
+}
+table.hovertable tr {
+  background-color:#d4e3e5;
+}
+table.hovertable td {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #a9c6c9;
+}
+</style>
+<!-- Table goes in the document BODY -->
+
+
+
+
+ 

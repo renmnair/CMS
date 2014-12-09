@@ -1,0 +1,37 @@
+<h1>Post Assignments</h1>
+<% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+  <% end %>
+
+<%= form_for @assignment  do |f| %>
+  <p>
+    <%= f.label :assignment_title%><br>
+    <%= f.text_area :assignment_title %>
+  </p>
+  <p>
+    <%= f.label :start_date %><br>
+    <%= f.date_select :start_date %>
+  </p>
+  <p>
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </p>
+ 
+ <tr>
+    <%
+    course_id = Trainer.where(:user_id =>current_user.id).first.course_id
+    cname = Course.where(:id =>course_id).first.course_name %>
+    <td><%= f.label :course %> : <%= cname  %></td><br />
+    <%= f.hidden_field :course_id, :value =>course_id %>
+    <td><%#= collection_select(:assignment, :course_id, Course.all, :id, :course_name)  %> 
+
+    </td>
+    
+  </tr>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+  <% end %>
+  

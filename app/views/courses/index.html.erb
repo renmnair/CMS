@@ -1,0 +1,64 @@
+<div style="float:left;margin-left:30%;">
+<h1>Courses Offerred</h1>
+
+<tr>
+ <td><%= link_to 'Back' ,:back%></td>
+ </tr>
+
+
+
+
+<table class="hovertable">
+<tr>
+  <th>CourseName</th><th>Duration</th>
+  <%if is_admin?%>
+  <th>Actions</th>
+  <%end%>
+</tr>
+<% @courses.each do |course| %>
+<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+   <td><%= link_to "#{course.course_name}", course_path(course) %></td>
+    <td><%= course.duration %></td>
+    <%if is_admin?%>
+    <td><%= link_to 'Edit', edit_course_path(course) %> <%= link_to 'Delete', course_path(course),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <%end%>              
+</tr>
+<% end %>
+</table>
+ <%if is_admin?%>
+ <tr>
+ <td><%= link_to 'New',  new_course_path%></td>
+ </tr>
+ <% end %>
+</div>
+
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+table.hovertable {
+  font-family: verdana,arial,sans-serif;
+  font-size:11px;
+  color:#333333;
+  border-width: 1px;
+  border-color: #999999;
+  border-collapse: collapse;
+}
+table.hovertable th {
+  background-color:#c3dde0;
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #a9c6c9;
+}
+table.hovertable tr {
+  background-color:#d4e3e5;
+}
+table.hovertable td {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #a9c6c9;
+}
+</style>
+<!-- Table goes in the document BODY -->
+

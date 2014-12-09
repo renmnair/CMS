@@ -1,0 +1,19 @@
+<h1>Role details</h1>
+
+<%=@users =User.where(:role_id=>@role.id)%> 
+<p>
+  <strong>Role Type:</strong>
+  <%= @role.roletype %><br>
+  <strong>Description:</strong>
+  <%= @role.description %>
+</p>
+
+<tr>
+
+User Names:
+<%@users.each do |u|%>
+<p><%=u.email %></p>
+<%end%>
+
+</tr>
+

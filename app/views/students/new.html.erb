@@ -1,0 +1,78 @@
+<h1>Creating Student</h1>
+<% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+  <% end %>
+
+<%= form_for @student  do |f| %>
+  <p>
+    <%= f.label :admission_no%><br>
+    <%= f.text_field :admission_no, :value => @admission_number, :class=>"form-control", :readonly=>true %>
+  </p>
+  <p>
+    <%= f.label :admission_date %><br>
+    <%= f.date_select :admission_date %>
+  </p>
+
+  <p>
+    <%= f.label :first_name%><br>
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :middle_name%><br>
+    <%= f.text_field :middle_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name%><br>
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :date_of_birth%><br>
+    <%=date_select("student","date_of_birth",:start_year => 1981, :end_year=>2000)  %>
+  </p>
+
+  <p>
+    <%= f.label :gender%><br>
+    <%= f.text_field :gender %>
+  </p>
+  
+  <p>
+    <%= f.label :blood_group%><br>
+    <%= f.text_field :blood_group %>
+  </p>
+
+  <p>
+    <%= f.label :language%><br>
+    <%= f.text_field :language %>
+  </p>
+
+  <p>
+    <%= f.label :address%><br>
+    <%= f.text_area :address %>
+  </p>
+
+  <p>
+    <%= f.label :phone%><br>
+    <%= f.number_field :phone %>
+  </p>
+
+ 
+
+<tr>
+    
+    <td><%= f.label :course %></td><br />
+    <td><%= collection_select(:student, :course_id, Course.all, :id, :course_name)  %> </td>
+    
+  </tr>
+  <tr>
+   
+  </tr>  
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+  <% end %>
+  

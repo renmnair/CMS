@@ -1,0 +1,73 @@
+<h1>Creating  TrainerDetails</h1>
+<% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+  <% end %>
+
+<%= form_for @trainer do |f| %>
+  <p>
+    
+    <%= f.text_field :employee_number, :value => @employee_number, :class=>"form-control", :readonly=>true %>
+
+    <%#= f.label :employee_number%><br>
+    <%#= f.text_field :employee_number %>
+  </p>
+  <p>
+    <%= f.label :joining_date %><br>
+    <%= date_select("trainer", "joining_date", :start_year =>1999, :end_year =>2014) %>
+  </p>
+
+  <p>
+    <%= f.label :first_name%><br>
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :middle_name%><br>
+    <%= f.text_field :middle_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name%><br>
+    <%= f.text_field :last_name %>
+  </p>
+
+    <p>
+    <%= f.label :gender%><br>
+    <%= f.text_field :gender %>
+  </p>
+  
+  <p>
+    <%= f.label :qualification%><br>
+    <%= f.text_field :qualification %>
+  </p>
+
+  <p>
+    <%= f.label :experience_detail%><br>
+    <%= f.text_field :experience_detail %>
+  </p>
+
+  <p>
+    <%= f.label :home_address%><br>
+    <%= f.text_area :home_address %>
+  </p>
+
+  <p>
+    <%= f.label :mobile_phone%><br>
+    <%= f.number_field :mobile_phone %>
+  </p>
+
+  
+<tr>
+    
+    <td><%= f.label :course %><br /></td>
+    <td><%= collection_select(:trainer, :course_id, Course.all, :id, :course_name)  %> </td>
+    
+  </tr>
+  
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+  <% end %>
+  

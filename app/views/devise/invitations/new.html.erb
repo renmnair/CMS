@@ -1,0 +1,18 @@
+<h2><%= t "devise.invitations.new.header" %></h2>
+
+<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+  <%= devise_error_messages! %>
+
+<% resource.class.invite_key_fields.each do |field| -%>
+  <p><%= f.label field %><br />
+  <%= f.text_field field %></p><br>
+  
+ <div class="field">
+        <%= f.label :Role %><br />
+        <%= collection_select(:user, :role_id, Role.where('roletype not in(?)', "admin"), :id, :roletype)  %>
+        </br>
+        </div>
+<% end -%>
+
+  <p><%= f.submit t("devise.invitations.new.submit_button") %></p>
+<% end %>

@@ -1,0 +1,21 @@
+<h1>Creating Roles</h1>
+<% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+  <% end %>
+
+<%= form_for @role  do |f| %>
+  <p>
+    <%= f.label :roletype%><br>
+    <%= f.text_field :roletype %>
+  </p>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+  <% end %>
+  

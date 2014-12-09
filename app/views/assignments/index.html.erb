@@ -1,0 +1,65 @@
+
+
+<div style="float:left;margin-left:30%;">
+
+<h1>Assignments</h1>
+
+
+
+<table class="hovertable">
+  
+  <tr>
+    <th>Assignment</th>
+    <th>Course</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    
+    <th>Actions</th>
+    <th colspan="2"></th>
+  </tr>
+
+<% @assignments.each do |assignment| %>
+  <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+   <% @cour =Course.where(:id=>assignment.course_id).first.course_name %>
+  </tr>
+    <td><%= assignment.assignment_title %></td>
+    <td><%= !@cour.nil? ? @cour :'Nil'%></td>
+    <td><%= assignment.start_date %></td>
+    <td><%= assignment.end_date %></td>
+    <td><%= link_to 'Answer', new_submitted_assignment_path(assignment)%></td>
+    
+    <% if !is_student?%>
+    <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
+    <td><%= link_to 'Delete', assignment_path(assignment),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
+<% end %>
+</table>
+</div>
+<style type="text/css">
+table.hovertable {
+  font-family: verdana,arial,sans-serif;
+  font-size:11px;
+  color:#333333;
+  border-width: 1px;
+  border-color: #999999;
+  border-collapse: collapse;
+}
+table.hovertable th {
+  background-color:#c3dde0;
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #a9c6c9;
+}
+table.hovertable tr {
+  background-color:#d4e3e5;
+}
+table.hovertable td {
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #a9c6c9;
+}
+</style>
+<!-- Table goes in the document BODY -->

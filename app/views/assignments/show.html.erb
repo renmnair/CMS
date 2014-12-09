@@ -1,0 +1,20 @@
+ASSIGNMENT DETAILS
+<%=@s_assignts =SubmittedAssignment.where(:assigment_id=>@assignment.id)%>
+
+<%=@s_assigntseach.with_index(1) do |s,i|%> 
+
+<p><%= link_to "#{i}"+ ':' +s.first_name , submitted_assignment_path(s.id)%></p>
+
+<%end%>
+Assignment:
+<%=@assignment.assignment_details%>
+<br>
+Start Date:
+<%=@assignment.start_date%>
+<br>
+End Date :
+<%=@assignment.end_date%>
+
+
+
+<%=@users =User.where(:role_id=>@role.id)%>

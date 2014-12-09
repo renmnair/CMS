@@ -1,0 +1,25 @@
+Student Profile
+<p>
+
+
+Student Name:
+ <%= @student.first_name %><br>
+ Admission Number:<br>
+ <%=@student.admission_no%><br>
+ Admission_date:<br>
+ <%=@student.admission_date%><br>
+ Date of Birth:<br>
+ <%=@student.date_of_birth%><br>
+ Gender:<br>
+ <%=@student.gender%><br>
+ Blood Group:
+ <%=@student.blood_group%><br>
+ Address:<br>
+ <%=@student.address%><br>
+ Phone No:<br>
+ <%=@student.phone%><br>
+ </p>
+
+<tr>
+ <td><%= link_to 'Back' ,:back%></td>
+ </tr>

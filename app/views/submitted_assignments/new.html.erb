@@ -1,0 +1,41 @@
+<h1>Submit Assignments</h1>
+<% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+  <% end %>
+
+<%= form_for @submitted_assignment  do |f| %>
+  
+<% course_id = Student.where(:user_id =>current_user.id).first.course_id%>
+     
+  <p>
+    <%= f.label :assignment_title%><br>
+    <%= collection_select(:submitted_assignment, :assignment_id, Assignment.where(:course_id =>course_id), :id, :assignment_title)%>
+  </p>
+
+ 
+  <p>
+      <%= f.label :assignment_answer %><br/>
+     <%= f.file_field :attach %>
+  </p>
+  
+    <tr>
+    <%#
+    course_id = Student.where(:user_id =>current_user.id).first.course_id
+    cname = Course.where(:id =>course_id).first.course_name %>
+    <td><%#= cname  %></td><br />
+    <%#= f.hidden_field :course_id, :value =>course_id %>
+    <td><%#= collection_select(:assignment, :course_id, Course.all, :id, :course_name)  %> 
+
+    </td>
+    <% student_id = Student.where(:user_id => current_user.id).first.id%>
+    <%= f.hidden_field :student_id, :value =>student_id%>
+  </tr>
+    
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+  <% end %>
+  

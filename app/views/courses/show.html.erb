@@ -1,0 +1,12 @@
+<%=@students =Student.where(:course_id=>@course.id)%> 
+
+Students name:
+<%@students.each.with_index(1) do |s,i|%>
+
+<p><%= link_to "#{i}"+ ':' +s.first_name , student_path(s.id)%></p>
+
+<%end%>
+
+
+<%=link_to 'Create New Student' , new_student_path %>
+
